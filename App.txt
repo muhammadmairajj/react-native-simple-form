@@ -1,0 +1,109 @@
+import React,{ useState } from 'react';
+import {StyleSheet, Button, Text, View} from 'react-native';
+
+function App() {
+  const [name, setName] = useState('AliAhmed');
+
+  const handleClick = () => {
+    // alert('Function Called');
+    setName('Hello Muhammad Mairaj');
+  };
+  
+
+  // let name = 'Muhammad Mairaj';
+  let email = 'mairaj@gmail.com';
+  let age = 23;
+
+  return (
+    <View>
+      <Text style={styles.title}>Welcome To React Native</Text>
+      <Button title="Press Here" color={'green'} onPress={handleClick} />
+      <Text style={styles.text}>Name: {name}</Text>
+      <Text style={styles.text}>Age: {age}</Text>
+      <Text style={styles.text}>Email: {email}</Text>
+    </View>
+  );
+}
+
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+  },
+  text: {
+    fontSize: 20
+ }
+ 
+});
+
+
+export default App;
+
+*************************************************
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import ExStyle from './style';
+
+function App() {
+  const [name, setName] = useState('');
+
+ 
+  return (
+    <View>
+      <Text style={{fontSize: 30}}>Handle Input Text Box</Text>
+      <Text style={{fontSize: 30}}>Your Name is: {name}</Text>
+      <TextInput
+        placeholder="Enter Type Here"
+        style={style.textInput}
+        onChangeText={(text) => setName(text)}
+      />
+      <Button title='Clear Input Value' onPress={() => setName('')} />
+      {/* <Text
+        style={{
+          fontSize: 30,
+          color: '#fff',
+          backgroundColor: 'green',
+          padding: 10,
+          marginBottom: 10,
+          height: 100,
+          textAlign: 'center',
+          textAlignVertical: 'center',
+          borderRadius: 10
+        }}>
+        Style In React Native
+      </Text>
+
+      <Text style={style.textBox}>Style In React Native</Text>
+      <Text style={style.textBox}>Style In React Native</Text>
+      <Text style={style.textBox}>Style In React Native</Text>
+
+      <Text style={ExStyle.textBox}>Style In React Native</Text>
+      <Text style={ExStyle.textBox}>Style In React Native</Text>
+      <Text style={ExStyle.textBox}>Style In React Native</Text> */}
+    </View>
+  );
+}
+
+const style = StyleSheet.create({
+  textBox: {
+    margin: 10,
+    color: '#fff',
+    fontSize: 30,
+    backgroundColor: 'blue',
+    marginBottom: 10,
+    borderRadius: 10,
+    padding: 10,
+    height: 100,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  textInput: {
+    color: 'blue',
+    borderColor: 'blue',
+    borderWidth: 2,
+    margin: 10,
+    fontSize: 18,
+  },
+});
+
+export default App;
