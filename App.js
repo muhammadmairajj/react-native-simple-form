@@ -1,41 +1,47 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import data from './data.json';
+import UserData from './components/UserData';
 
 function App() {
   return (
     <View>
-      <Text style={{fontSize: 35, color: 'black', textAlign:'center'}}>Grid With Dynamic Data</Text>
-      <ScrollView style={{marginBottom: 25}}>
-        <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-          {data.users.map(user => {
-            return (
-              <View key={user.id}>
-                <Text
-                  style={
-                    style.item
-                  }>{`${user.firstName} ${user.lastName}`}</Text>
-              </View>
-            );
-          })}
-        </View>
-      </ScrollView>
+      <Text style={{fontSize: 26, textAlign: 'center', color: 'black'}}>
+        Component in Loop with Flatlist
+      </Text>
+      <FlatList
+        data={data.users}
+        renderItem={({item}) => <UserData item={item} />}></FlatList>
     </View>
   );
 }
 
-const style = StyleSheet.create({
-  item: {
-    padding: 5,
-    margin: 5,
-    backgroundColor: 'blue',
-    color: '#fff',
-    textAlign: 'center',
-    width: 120,
-    height: 120,
-    fontSize: 25,
-    textAlignVertical: 'center',
-  },
-});
+// const UserData = ({item}) => {
+//   return (
+//     <View style={styles.box}>
+//       <Text style={styles.item}>
+//         Name: {`${item.firstName} ${item.lastName}`}
+//       </Text>
+//       <Text style={styles.item}>Email: {item.email}</Text>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   item: {
+//     flex: 1,
+//     fontSize: 24,
+//     margin: 2,
+//     color: 'orange',
+//     textAlign: 'center',
+//     // backgroundColor: 'green'
+//   },
+//   box: {
+//     flexDirection: 'row',
+//     borderWidth: 2,
+//     borderColor: 'orange',
+//     marginBottom: 10,
+//   },
+// });
 
 export default App;
