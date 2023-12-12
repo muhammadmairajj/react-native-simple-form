@@ -1,47 +1,33 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-import data from './data.json';
-import UserData from './components/UserData';
+import {View, Text, StyleSheet, SectionList} from 'react-native';
 
 function App() {
+  const users = [
+    {id: 1, name: 'Mairaj', data: ['PHP', 'React', 'NodeJS']},
+    {id: 2, name: 'Aliahmed', data: ['Angular', 'React', 'NodeJS']},
+    {id: 3, name: 'Arsalan', data: ['PHP', 'Vue', 'Python']},
+    {id: 4, name: 'Sameer', data: ['NextJS', 'React', 'Vue']},
+    {id: 5, name: 'Salman', data: ['Java', '.Net', 'C++']},
+    {id: 6, name: 'Owais', data: ['Python', 'Angular', 'NodeJS']},
+  ];
+
   return (
     <View>
       <Text style={{fontSize: 26, textAlign: 'center', color: 'black'}}>
-        Component in Loop with Flatlist
+        Section List with example
       </Text>
-      <FlatList
-        data={data.users}
-        renderItem={({item}) => <UserData item={item} />}></FlatList>
+      <SectionList
+        sections={users}
+        renderItem={({item}) => (
+          <Text style={{fontSize: 20, marginLeft: 20}}>{item}</Text>
+        )}
+        renderSectionHeader={({section: {name}}) => (
+          <Text style={{fontSize: 25, color: 'red'}}>{name}</Text>
+        )}
+      />
     </View>
   );
 }
 
-// const UserData = ({item}) => {
-//   return (
-//     <View style={styles.box}>
-//       <Text style={styles.item}>
-//         Name: {`${item.firstName} ${item.lastName}`}
-//       </Text>
-//       <Text style={styles.item}>Email: {item.email}</Text>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   item: {
-//     flex: 1,
-//     fontSize: 24,
-//     margin: 2,
-//     color: 'orange',
-//     textAlign: 'center',
-//     // backgroundColor: 'green'
-//   },
-//   box: {
-//     flexDirection: 'row',
-//     borderWidth: 2,
-//     borderColor: 'orange',
-//     marginBottom: 10,
-//   },
-// });
 
 export default App;
