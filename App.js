@@ -1,46 +1,41 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import data from './data.json';
 
 function App() {
-  const users = [
-    {id: 1, name: 'mairaj', email: 'mairaj@gmail.com'},
-    {id: 2, name: 'aliahmed', email: 'aliahmed@gmail.com'},
-    {id: 3, name: 'arsalan', email: 'arsalan@gmail.com'},
-    {id: 4, name: 'owais', email: 'owais@gmail.com'},
-    {id: 5, name: 'raheel', email: 'raheel@gmail.com'},
-    {id: 6, name: 'muzafar', email: 'muzafar@gmail.com'},
-    {id: 7, name: 'sameer', email: 'sameer@gmail.com'},
-    {id: 8, name: 'aqib', email: 'aqib@gmail.com'},
-    {id: 9, name: 'ismail', email: 'ismail@gmail.com'},
-    {id: 10, name: 'sami', email: 'sami@gmail.com'},
-  ];
   return (
     <View>
-      <Text style={{fontSize: 27, color: 'black'}}>List with map function | without flatlist | And With ScrollView</Text>
-      <ScrollView style={{marginBottom: 30}}>
-        {users.map((item) => {
-          return (
-            <View key={item.id} style={styles.item}>
-              <Text style={{fontSize: 25, color: '#fff'}}>Name: {item.name}</Text>
-              <Text style={{fontSize: 25, color: '#fff'}}>Email: {item.email}</Text>
-            </View>
-          )
-        })}
+      <Text style={{fontSize: 35, color: 'black', textAlign:'center'}}>Grid With Dynamic Data</Text>
+      <ScrollView style={{marginBottom: 25}}>
+        <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+          {data.users.map(user => {
+            return (
+              <View key={user.id}>
+                <Text
+                  style={
+                    style.item
+                  }>{`${user.firstName} ${user.lastName}`}</Text>
+              </View>
+            );
+          })}
+        </View>
       </ScrollView>
     </View>
-  )
+  );
 }
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   item: {
-    padding: 10,
-    margin: 10,
-    color: '#fff',
+    padding: 5,
+    margin: 5,
     backgroundColor: 'blue',
-    borderColor: 'black',
-    borderWidth: 1,
-  }
-})
+    color: '#fff',
+    textAlign: 'center',
+    width: 120,
+    height: 120,
+    fontSize: 25,
+    textAlignVertical: 'center',
+  },
+});
 
 export default App;
