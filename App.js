@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, SectionList} from 'react-native';
+import {View, Text, StyleSheet, SectionList, ScrollView} from 'react-native';
 
 function App() {
   const users = [
@@ -16,8 +16,9 @@ function App() {
       <Text style={{fontSize: 26, textAlign: 'center', color: 'black'}}>
         Section List with example
       </Text>
-      <SectionList
+     <SectionList
         sections={users}
+        style={{margin:35}}
         renderItem={({item}) => (
           <Text style={{fontSize: 20, marginLeft: 20}}>{item}</Text>
         )}
