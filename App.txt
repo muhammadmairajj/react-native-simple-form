@@ -107,3 +107,264 @@ const style = StyleSheet.create({
 });
 
 export default App;
+
+
+**********************************************************
+Simple Form In React Native
+import React, {useState} from 'react';
+import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
+
+function App() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [display, setDisplay] = useState(false);
+
+  const resetFormData = () => {
+    setDisplay(false);
+    setName('');
+    setEmail('');
+    setPassword('');
+  }
+  return (
+    <View>
+      <Text style={styles.text}>Simple Form in React Native</Text>
+
+      <TextInput
+        style={styles.textBox}
+        placeholder="Enter Your Name: "
+        value={name}
+        onChangeText={text => setName(text)}
+      />
+      <TextInput
+        style={styles.textBox}
+        placeholder="Enter Your Email: "
+        value={email}
+        onChangeText={text => setEmail(text)}
+      />
+      <TextInput
+        secureTextEntry={true}
+        style={styles.textBox}
+        placeholder="Enter Your Password: "
+        value={password}
+        onChangeText={password => setPassword(password)}
+      />
+
+      <View style={{marginBottom: 10}} >
+      <Button color={'green'} title="Submit" onPress={() => setDisplay(true)} />
+      </View> 
+      <Button title="Clear Text" onPress={resetFormData} />
+
+      <View>
+        {display ? (
+          <View>
+            <Text style={{fontSize: 20}}>Name: {name}</Text>
+            <Text style={{fontSize: 20}}>Email: {email}</Text>
+          </View>
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  textBox: {
+    height: 50,
+    marginBottom: 10,
+    padding: 10,
+    fontSize: 24,
+    color: 'blue',
+    borderWidth: 2,
+    borderColor: 'black',
+    margin: 10,
+  },
+  text: {
+    fontSize: 27,
+    color: 'black',
+    textAlign: 'center',
+  },
+});
+
+export default App;
+**************************************************************
+import React from 'react';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
+
+function App() {
+  const users = [
+    {id: 1, name: 'mairaj', email: 'mairaj@gmail.com'},
+    {id: 2, name: 'aliahmed', email: 'aliahmed@gmail.com'},
+    {id: 3, name: 'arsalan', email: 'arsalan@gmail.com'},
+    {id: 4, name: 'owais', email: 'owais@gmail.com'},
+    {id: 5, name: 'raheel', email: 'raheel@gmail.com'},
+  ];
+
+  return (
+    <View>
+      <Text style={{fontSize: 25, color:'black', textAlign:'center'}}>FlatList | Make list in React Native</Text>
+      <FlatList
+        data={users}
+        renderItem={({item}) => {
+          return (
+            <View style={styles.item}>
+              <Text style={{fontSize: 25, color: '#fff'}}>Id: {item.id}</Text>
+              <Text style={{fontSize: 25, color: '#fff'}}>Name: {item.name}</Text>
+              <Text style={{fontSize: 25, color: '#fff'}}>Email: {item.email}</Text>
+            </View>
+          );
+        }}
+        keyExtractor={(item) => item.id}
+        
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  item: {
+    padding: 10,
+    margin: 10,
+    color: '#fff',
+    backgroundColor: 'blue',
+    borderColor: 'black',
+    borderWidth: 1,
+  }
+})
+
+export default App;
+**********************************************************
+import React from 'react';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+
+
+function App() {
+  const users = [
+    {id: 1, name: 'mairaj', email: 'mairaj@gmail.com'},
+    {id: 2, name: 'aliahmed', email: 'aliahmed@gmail.com'},
+    {id: 3, name: 'arsalan', email: 'arsalan@gmail.com'},
+    {id: 4, name: 'owais', email: 'owais@gmail.com'},
+    {id: 5, name: 'raheel', email: 'raheel@gmail.com'},
+    {id: 6, name: 'muzafar', email: 'muzafar@gmail.com'},
+    {id: 7, name: 'sameer', email: 'sameer@gmail.com'},
+    {id: 8, name: 'aqib', email: 'aqib@gmail.com'},
+    {id: 9, name: 'ismail', email: 'ismail@gmail.com'},
+    {id: 10, name: 'sami', email: 'sami@gmail.com'},
+  ];
+  return (
+    <View>
+      <ScrollView style={{marginBottom: 30}}>
+        {users.map((item) => {
+          return (
+            <View key={item.id} style={styles.item}>
+              <Text style={{fontSize: 25, color: '#fff'}}>Name: {item.name}</Text>
+              <Text style={{fontSize: 25, color: '#fff'}}>Email: {item.email}</Text>
+            </View>
+          )
+        })}
+      </ScrollView>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  item: {
+    padding: 10,
+    margin: 10,
+    color: '#fff',
+    backgroundColor: 'blue',
+    borderColor: 'black',
+    borderWidth: 1,
+  }
+})
+
+export default App;
+******************************************
+import React from 'react';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import data from './data.json';
+
+function App() {
+  return (
+    <View>
+      <Text style={{fontSize: 35, color: 'black', textAlign:'center'}}>Grid With Dynamic Data</Text>
+      <ScrollView style={{marginBottom: 25}}>
+        <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+          {data.users.map(user => {
+            return (
+              <View key={user.id}>
+                <Text
+                  style={
+                    style.item
+                  }>{`${user.firstName} ${user.lastName}`}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+const style = StyleSheet.create({
+  item: {
+    padding: 5,
+    margin: 5,
+    backgroundColor: 'blue',
+    color: '#fff',
+    textAlign: 'center',
+    width: 120,
+    height: 120,
+    fontSize: 25,
+    textAlignVertical: 'center',
+  },
+});
+
+export default App;
+************************************************
+import React from 'react';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
+import data from './data.json';
+import UserData from './components/UserData';
+
+function App() {
+  return (
+    <View>
+      <Text style={{fontSize: 26, textAlign: 'center', color: 'black'}}>
+        Component in Loop with Flatlist
+      </Text>
+      <FlatList
+        data={data.users}
+        renderItem={({item}) => <UserData item={item} />}></FlatList>
+    </View>
+  );
+}
+
+// const UserData = ({item}) => {
+//   return (
+//     <View style={styles.box}>
+//       <Text style={styles.item}>
+//         Name: {`${item.firstName} ${item.lastName}`}
+//       </Text>
+//       <Text style={styles.item}>Email: {item.email}</Text>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   item: {
+//     flex: 1,
+//     fontSize: 24,
+//     margin: 2,
+//     color: 'orange',
+//     textAlign: 'center',
+//     // backgroundColor: 'green'
+//   },
+//   box: {
+//     flexDirection: 'row',
+//     borderWidth: 2,
+//     borderColor: 'orange',
+//     marginBottom: 10,
+//   },
+// });
+
+export default App;

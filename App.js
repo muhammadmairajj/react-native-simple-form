@@ -1,75 +1,45 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
+import React from 'react';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 
 function App() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [display, setDisplay] = useState(false);
+  const users = [
+    {id: 1, name: 'mairaj', email: 'mairaj@gmail.com'},
+    {id: 2, name: 'aliahmed', email: 'aliahmed@gmail.com'},
+    {id: 3, name: 'arsalan', email: 'arsalan@gmail.com'},
+    {id: 4, name: 'owais', email: 'owais@gmail.com'},
+    {id: 5, name: 'raheel', email: 'raheel@gmail.com'},
+  ];
 
-  const resetFormData = () => {
-    setDisplay(false);
-    setName('');
-    setEmail('');
-    setPassword('');
-  }
   return (
     <View>
-      <Text style={styles.text}>Simple Form in React Native</Text>
-
-      <TextInput
-        style={styles.textBox}
-        placeholder="Enter Your Name: "
-        value={name}
-        onChangeText={text => setName(text)}
+      <Text style={{fontSize: 25, color:'black', textAlign:'center'}}>FlatList | Make list in React Native</Text>
+      <FlatList
+        data={users}
+        renderItem={({item}) => {
+          return (
+            <View style={styles.item}>
+              <Text style={{fontSize: 25, color: '#fff'}}>Id: {item.id}</Text>
+              <Text style={{fontSize: 25, color: '#fff'}}>Name: {item.name}</Text>
+              <Text style={{fontSize: 25, color: '#fff'}}>Email: {item.email}</Text>
+            </View>
+          );
+        }}
+        keyExtractor={(item) => item.id}
+        
       />
-      <TextInput
-        style={styles.textBox}
-        placeholder="Enter Your Email: "
-        value={email}
-        onChangeText={text => setEmail(text)}
-      />
-      <TextInput
-        secureTextEntry={true}
-        style={styles.textBox}
-        placeholder="Enter Your Password: "
-        value={password}
-        onChangeText={password => setPassword(password)}
-      />
-
-      <View style={{marginBottom: 10}} >
-      <Button color={'green'} title="Submit" onPress={() => setDisplay(true)} />
-      </View> 
-      <Button title="Clear Text" onPress={resetFormData} />
-
-      <View>
-        {display ? (
-          <View>
-            <Text style={{fontSize: 20}}>Name: {name}</Text>
-            <Text style={{fontSize: 20}}>Email: {email}</Text>
-          </View>
-        ) : null}
-      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  textBox: {
-    height: 50,
-    marginBottom: 10,
+  item: {
     padding: 10,
-    fontSize: 24,
-    color: 'blue',
-    borderWidth: 2,
-    borderColor: 'black',
     margin: 10,
-  },
-  text: {
-    fontSize: 27,
-    color: 'black',
-    textAlign: 'center',
-  },
-});
+    color: '#fff',
+    backgroundColor: 'blue',
+    borderColor: 'black',
+    borderWidth: 1,
+  }
+})
 
 export default App;
